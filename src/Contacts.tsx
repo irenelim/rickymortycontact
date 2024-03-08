@@ -25,6 +25,7 @@ export default function Contacts() {
       const fetchUrl =
         `https://rickandmortyapi.com/api/character${params}`.replace(/&$/, "");
       try {
+        console.log(fetchUrl);
         const result = await axios.get(fetchUrl);
         if (result.data) {
           setContacts(result.data.results);
@@ -48,8 +49,8 @@ export default function Contacts() {
     setGender("");
   };
 
-
   const fetchMoreContacts = async (url: string) => {
+    console.log("fetchMoreContacts", url);
     try {
       const result = await axios.get(url);
       if (result.data) {
@@ -58,7 +59,7 @@ export default function Contacts() {
       }
     } catch (error) {
       console.error("fetching data failed.");
-    }    
+    }
   };
 
   return (
@@ -95,12 +96,16 @@ export default function Contacts() {
           <div className="bg-slate-100 mt-4 flex flex-col gap-1">
             <InfiniteScroll
               dataLength={contacts.length}
-              next={() => info?.next ? fetchMoreContacts(info?.next): {}}
-              hasMore={!!(info?.next)}
-              loader={<h4>Loading...</h4>}
+              next={() => (info?.next ? fetchMoreContacts(info?.next) : {})}
+              hasMore={!!info?.next}
+              loader={
+                <p className="text-center italic text-slate-600/50">
+                  Loading...
+                </p>
+              }
               height={1500}
               endMessage={
-                <p className="text-center italic">
+                <p className="text-center italic text-slate-600/50">
                   Yay! You have seen it all
                 </p>
               }
