@@ -4,6 +4,7 @@ import SearchInput from "./components/SearchInput";
 import ContactCard from "./components/ContactCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Contacts() {
   const [contacts, setContacts] = useState<ContactType[] | null>(null);
@@ -11,8 +12,6 @@ export default function Contacts() {
   const [name, setName] = useState("");
   const [status, setStatus] = useState("");
   const [gender, setGender] = useState("");
-
-  console.log(info); // {count: 826, pages: 42, next: 'https://rickandmortyapi.com/api/character?page=2', prev: null}
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -28,7 +27,6 @@ export default function Contacts() {
       try {
         const result = await axios.get(fetchUrl);
         if (result.data) {
-          // console.log(result.data)
           setContacts(result.data.results);
           setInfo(result.data.info);
         }
@@ -48,6 +46,19 @@ export default function Contacts() {
   const onClear = () => {
     setStatus("");
     setGender("");
+  };
+
+
+  const fetchMoreContacts = async (url: string) => {
+    try {
+      const result = await axios.get(url);
+      if (result.data) {
+        setContacts((prev) => [...prev!, ...result.data.results]);
+        setInfo(result.data.info);
+      }
+    } catch (error) {
+      console.error("fetching data failed.");
+    }    
   };
 
   return (
@@ -81,10 +92,23 @@ export default function Contacts() {
         ) : null}
 
         {contacts && contacts.length > 0 ? (
-          <div className="bg-slate-100 mt-4 max-h-[1590px] overflow-auto flex flex-col gap-1">
-            {contacts?.map((contact) => {
-              return <ContactCard key={contact.id} contact={contact} />;
-            })}
+          <div className="bg-slate-100 mt-4 flex flex-col gap-1">
+            <InfiniteScroll
+              dataLength={contacts.length}
+              next={() => info?.next ? fetchMoreContacts(info?.next): {}}
+              hasMore={!!(info?.next)}
+              loader={<h4>Loading...</h4>}
+              height={1500}
+              endMessage={
+                <p className="text-center italic">
+                  Yay! You have seen it all
+                </p>
+              }
+            >
+              {contacts?.map((contact) => {
+                return <ContactCard key={contact.id} contact={contact} />;
+              })}
+            </InfiniteScroll>
           </div>
         ) : null}
       </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import EpisodesTableRow from "./EpisodesTableRow";
 
 type Props = {
