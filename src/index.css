@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+th,
+td {
+  @apply px-3;
+}
+
+td {
+  @apply border-b-2 text-slate-600 text-xs;
+}
+
+.active div {
+  @apply bg-blue-100;
+}
