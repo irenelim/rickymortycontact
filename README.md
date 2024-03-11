@@ -1,21 +1,45 @@
 # React + TypeScript + Vite
-<https://github.com/irenelim/rickymortycontact.git>
-<https://rickymortycontacts.web.app>
+
+## Repository
+
+- <https://github.com/irenelim/rickymortycontact.git>
 
 
-- api doc <https://rickandmortyapi.com/documentation/>
+## WebApp
+
+- <https://rickymortycontacts.web.app>
+
+
+## api doc
+
+- <https://rickandmortyapi.com/documentation/>
 
 
 
 ## Tech use
-1. tailwincss
+
+1. tailwindcss
 2. axios
-3. useHook-ts
-4. firebase hosting
+3. react-router-dom
+4. useHook-ts
 5. react-infinite-scroll-component
-6. 
+6. firebase hosting
 
 ## cmd
+
+### install
+
+> npm i
+
+### run
+
 > npm run dev
+
+### build
+
 > npm run build
+
+
+### deploy to firebase hosting
+
 > firebase deploy
