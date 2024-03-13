@@ -38,8 +38,12 @@
 ### build
 
 > npm run build
+<<<<<<< Updated upstream
 
 
 ### deploy to firebase hosting
 
+=======
+> firebase login --reauth
+>>>>>>> Stashed changes
 > firebase deploy
