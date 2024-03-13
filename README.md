@@ -29,21 +29,24 @@
 
 ### install
 
-> npm i
+```console
+npm i
+```
 
 ### run
 
-> npm run dev
+```console
+npm run dev
+```
 
 ### build
 
-> npm run build
-<<<<<<< Updated upstream
+```console
+npm run build
+```
 
 
 ### deploy to firebase hosting
 
-=======
 > firebase login --reauth
->>>>>>> Stashed changes
 > firebase deploy
