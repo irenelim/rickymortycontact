@@ -4,17 +4,13 @@
 
 - <https://github.com/irenelim/rickymortycontact.git>
 
-
 ## WebApp
 
 - <https://rickymortycontacts.web.app>
 
-
 ## api doc
 
 - <https://rickandmortyapi.com/documentation/>
-
-
 
 ## Tech use
 
@@ -45,8 +41,9 @@ npm run dev
 npm run build
 ```
 
-
 ### deploy to firebase hosting
 
-> firebase login --reauth
-> firebase deploy
+```console
+firebase login --reauth
+firebase deploy
+```

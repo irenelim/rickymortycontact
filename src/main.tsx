@@ -5,12 +5,11 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
+import axios from "axios";
 import Root from "./routes/root.tsx";
 import ErrorPage from "./ErrorPage.tsx";
-import Contact from "./Contact.tsx";
-// import { loader as rootLoader } from './routes/loader.ts'
-import axios from "axios";
 import Contacts from "./Contacts.tsx";
+import Contact from "./Contact.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,12 +20,6 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contacts />,
-        // loader: async () => {
-        //   const response = await axios.get(
-        //     "https://rickandmortyapi.com/api/character"
-        //   );
-        //   return response.data;
-        // },
         children: [
           {
             path: ":id",
