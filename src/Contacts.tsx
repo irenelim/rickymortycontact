@@ -5,6 +5,7 @@ import ContactCard from "./components/ContactCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { GENDER, STATUS } from "./config";
 
 export default function Contacts() {
   const [contacts, setContacts] = useState<ContactType[] | null>(null);
@@ -74,13 +75,13 @@ export default function Contacts() {
             name="Status"
             setValue={setStatus}
             value={status}
-            options={["alive", "dead", "unknown"]}
+            options={(Object.keys(STATUS) as (keyof typeof STATUS)[]).map((key) => STATUS[key])}
           />
           <Dropdown
             name="Gender"
             setValue={setGender}
             value={gender}
-            options={["female", "male", "genderless", "unknown"]}
+            options={(Object.keys(GENDER) as (keyof typeof GENDER)[]).map((key) => GENDER[key])}
           />
         </div>
         {status || gender ? (
